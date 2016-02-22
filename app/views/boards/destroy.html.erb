@@ -1,0 +1,7 @@
+<h1>Boards Destroy</h1>
+<%= link_to 'Destroy', @board,  method: :delete, data: { confirm: 'Are you sure?' } %>
+<img src="<%= @board.name.url %>" /><br/>
+<img src="<%= @board.name.large %>" /><br/>
+<img src="<%= @board.name.medium %>" /><br/>
+<img src="<%= @board.name.thumb %>" /><br/>
+<img src="<%= @board.name.square %>" /><br/>

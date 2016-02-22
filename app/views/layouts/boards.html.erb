@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>WhiteboardCentral</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <%= stylesheet_link_tag    'boards', media: 'all', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<div id="toolbar">
+    <div id="logo">Draw-Board</div>
+    <div id="free">WhiteBoard-Central</div>
+    <div id="colors"></div>
+    <div id="rad">
+      BrushSize <span id="radval">10</span>
+      <div id="decrad" class="radcontrol">-</div>
+      <div id="incrad" class="radcontrol">+</div>
+    </div>
+    <button><div id="save"> Save </div></button>
+    <button><div id="clear"> Clear </div></button> 
+  </div>
+  <canvas id="canvas" style="display:block;width:100%;height:95%">
+  Browser is incompatiable.
+  </canvas>
+
+  </div>
+  <div id="footline">
+  Use White Marker As Eraser.
+</div>
+
+<%= yield %>
+
+<%= javascript_include_tag 'boards', 'data-turbolinks-track' => true %>
+</body>
+</html>
