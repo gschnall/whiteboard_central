@@ -298,6 +298,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   figaro
   fog
+  fog-aws
   jbuilder (~> 2.0)
   jquery-rails
   mini_magick

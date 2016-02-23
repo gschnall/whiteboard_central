@@ -8,6 +8,7 @@ gem 'bootstrap_form'  # if you want bootstrap forms!
 gem 'carrierwave', '0.10.0'
 gem "mini_magick"
 gem "fog"
+gem "fog-aws"
 # figario
 gem "figaro"
 # 12factor
