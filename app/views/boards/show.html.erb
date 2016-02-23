@@ -1,6 +1,6 @@
 <h1>Boards#show</h1>
 
-<% link_to 'Destroy', @board,  method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= link_to 'Destroy', @board,  method: :delete, data: { confirm: 'Are you sure?' } %>
 <img src="<%= @board.title.url %>" /><br/>
 <img src="<%= @board.title.large %>" /><br/>
 <img src="<%= @board.title.medium %>" /><br/>
