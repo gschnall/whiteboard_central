@@ -13,7 +13,7 @@ CarrierWave.configure do |config|
     config.storage = :fog
   end
 
-  config.cache_dir = "#{Rails.root}/tmp/uploads"
+  config.cache_dir = "#{Rails.root}/public/uploads/boards"
 
   config.fog_directory  = ENV["AWS_BUCKET"]
 end

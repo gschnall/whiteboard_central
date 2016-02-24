@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
-
-  before_action :authorize, only: [:show]
+  
+  before_action :logged_in?
 
   def index
   end
 
   def show
-    @users = User.all
+    @user = User.find(params[:id])
   end
 
   def new

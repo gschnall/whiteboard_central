@@ -90,13 +90,43 @@ function setSwatch(e){
 
 setSwatch({target: document.getElementsByClassName('swatch')[0]});
 
-//save
+// ---SAVE FUNCTIONALITY HERE---
+
+    // Convert dataURL to Blob Object
+function dataURLtoBlob(dataURL) {
+    // Decode the dataURL    
+    var binary = atob(dataURL.split(',')[1]);
+    // Create 8-bit unsigned array
+    var array = [];
+    for(var i = 0; i < binary.length; i++) {
+        array.push(binary.charCodeAt(i));
+    }
+    // Return our Blob object
+    return new Blob([new Uint8Array(array)], {type: 'image/png'});
+}
+
 var saveButton = document.getElementById('save');
 
 saveButton.addEventListener('click',saveImage);
+
 function saveImage(){
-  var data = canvas.toDataURL();
-  window.open(data,'_blank','location=0, menubar=0');
+  console.log('sending..')
+  var dataURL = canvas.toDataURL('image/png');
+  //window.open(dataURL,'_blank','location=0, menubar=0');
+   // Get our file
+  var file= dataURLtoBlob(dataURL);
+    // Create new form data
+  var fd = new FormData();
+    // Append our Canvas image file to the form data
+  fd.append("image", file);
+    // And send it
+  $.ajax({
+     url: "/boards/",
+     type: "POST",
+     data: fd,
+     processData: false,
+     contentType: false,
+  });
 }
 
 var clearButton = document.getElementById('clear');
@@ -104,4 +134,3 @@ clearButton.addEventListener('click',clearIm);
 function clearIm(){
   location.reload();
 }
-

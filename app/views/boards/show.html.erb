@@ -1,8 +1,4 @@
-<h1>Boards#show</h1>
+<h1>Your White Board Collection</h1>
 
-<%= link_to 'Destroy', @board,  method: :delete, data: { confirm: 'Are you sure?' } %>
-<img src="<%= @board.title.url %>" /><br/>
-<img src="<%= @board.title.large %>" /><br/>
-<img src="<%= @board.title.medium %>" /><br/>
-<img src="<%= @board.title.thumb %>" /><br/>
-<img src="<%= @board.title.square %>" /><br/>
+<img src="<%= @board.imagepath %>" /><br/>
+<%= link_to 'Destroy', @board,  method: :delete, confirm: 'Are you sure?' %>

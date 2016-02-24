@@ -1,11 +1,11 @@
 <h1>Upload New Board</h1>
 
-<%= form_for(@board) do |f| %>
+<%= form_for @board, html: {id: 'canvasform'} do |f| %>
   <div>
     <%= f.label :title %><br>
-    <%= f.file_field :title %>
+    <%= f.file_field :title, html: {id: 'canvascontent'} %>
   </div>
   <div>
-    <%= f.submit %>
+    <button id="savecanvas"><%= f.submit %></button>
   </div>
 <% end %>
