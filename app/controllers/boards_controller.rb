@@ -2,6 +2,8 @@ class BoardsController < ApplicationController
   require 'base64'
   require 'mini_magick'
 
+  before_action :authorize, only:[:new,:create,:edit, :update,:destroy]
+
   def index
     @board = Board.all
   end
@@ -30,9 +32,10 @@ class BoardsController < ApplicationController
     @board.height = img.height
     @board.likes = 0
     @board.private = false 
-    #User.find(session[:user_id]).boards << @board
     # Save Board
     if @board.save
+      # Save Board to Current User's Boards
+      current_user.boards << @board
       flash[:success] = "White Board Saved Son!"
     else
       flash[:failure] = "Oops, There was a problem...Please Try again later."

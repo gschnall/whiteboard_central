@@ -9,6 +9,19 @@
 </head>
 <body>
 
+<% if logged_in? %>
+  <%= link_to 'Logout', logout_path %>
+<% else %>
+  <%= link_to 'Login', new_session_path %>
+<% end %> 
+
+<% if flash[:success] %>
+    <div class="alert alert-success"><%= flash[:success] %></div>
+<% elsif flash[:fail] %>
+    <div class="alert alert-warning"><%= flash[:fail] %></div>
+<% end %>
+<script>$('.alert').delay(2100).slideUp()</script>
+
 <%= yield %>
 
 </body>
