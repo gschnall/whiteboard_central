@@ -30,6 +30,18 @@
     <!-- /.container -->
 </nav>
 
+    <!-- Create New Board -->
+    <div class="row">
+        <div class="text-center col-lg-12">
+          <a href="/boards/new">
+            <button class="btn btn-lg btn-success">
+              Create New Board <i class="fa fa-lg fa-file-picture-o"></i>
+            </button>
+          </a>
+        </div>
+    </div>
+    <!-- /.row -->
+<hr>
 <!-- Page Content -->
 <div class="container">
 
@@ -43,8 +55,9 @@
     </div>
     <!-- /.row -->
 
+
     <!-- For Each Board -->
-    <% @user.boards.each do |b| %>
+    <% @user.boards.reverse.each do |b| %>
     <div class="row">
         <div class="col-md-7">
             <a href="#">
@@ -53,8 +66,8 @@
             </a>
         </div>
         <div class="col-md-5">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
-            <a class="btn btn-primary" href="#">View Board <span class="glyphicon glyphicon-chevron-right"></span></a>
+            <a class="btn btn-md btn-primary" href=<%= '/boards/'+ b.id.to_s + '/edit' %>>Edit Board <div class="fa fa-lg fa-paint-brush"></div></a>
+            <%= link_to "Delete Board", boards_destroy_path(b), data: { confirm:'Are you sure you want to delete this Board?'}, method: :delete , :class => "btn btn-md btn-danger"%>
         </div>
     </div>
 

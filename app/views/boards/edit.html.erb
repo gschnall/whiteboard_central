@@ -1,18 +1,13 @@
 
 <%= image_tag @board.imagepath.to_s, id:"image_to_canvas"%>
 <script>
-var image_id = document.getElementById('image_to_canvas') 
-$("#image_to_canvas").hide();
-console.log("working")
-var canvas = document.getElementById('canvas')
-var context = canvas.getContext('2d')
-context.drawImage(image_id, 200,200);
-function make_base(){
-  base_image = new Image();
-  base_image.src = edit_board_path 
-  base_image.onload = function(){
-    context.drawImage(base_image, 200,200);
-  }
-}
-//make_base()
+$(document).ready(function(){
+  $("#image_to_canvas").hide();
+  console.log("fire event")
+  var image_id = document.getElementById('image_to_canvas') 
+  //context.clearRect(0, 0, canvas.width, canvas.height);
+  var canvas = document.getElementById('canvas')
+  var context = canvas.getContext('2d')
+  context.drawImage(image_id,0,0);
+})
 </script>

@@ -1,6 +1,7 @@
 class BoardsController < ApplicationController
   #@user = current_user
   require 'base64'
+  require 'fileutils'
   #require 'mini_magick'
   skip_before_filter :verify_authenticity_token
 
@@ -71,8 +72,9 @@ class BoardsController < ApplicationController
 
   def destroy
     @board = Board.find(params[:id])
+    FileUtils.rm("#{Rails.root}/public/images/#{@board.imagepath}") 
     if @board.destroy
-      redirect_to root_path 
+      redirect_to(:back) 
     end
   end
 

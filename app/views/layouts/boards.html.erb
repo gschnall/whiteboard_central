@@ -6,6 +6,7 @@
   <%= stylesheet_link_tag    'boards', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 <body>
 <div id="toolbar">
@@ -14,20 +15,28 @@
 
     <div id="rad">
       BrushSize <span id="radval">10</span>
-      <div id="decrad" class="radcontrol">-</div>
-      <div id="incrad" class="radcontrol">+</div>
+      <div id="decrad" class="radcontrol"><i class="fa fa-plus"></i></div>
+      <div id="incrad" class="radcontrol"><i class="fa fa-minus"></i></div>
     </div>
-    <button id="save"> Save </button>
-    <button id="clear"> Clear </button>
+    <button class="buttonOnBoard" id="eraser"><i class="fa fa-lg fa-eraser"></i></button>
+    <button id="save" class="buttonOnBoard "><%= link_to '', users_path + "/" + current_user.id.to_s, class:"fa fa-lg fa-floppy-o"  %></button>
+    <button id="clear">Clear</button>
+    <button class="buttonOnBoard" >
+      <% if logged_in? %>
+        <%= link_to 'Logout', logout_path %>
+      <% else %>
+        <%= link_to 'Login', new_session_path %>
+      <% end %>
+    </button>
+    <button class="buttonOnBoard" >
+      <%= link_to 'Profile', users_path + "/" + current_user.id.to_s %>
+    </button>
   </div>
   <canvas id="canvas" style="display:block;width:100%;height:95%">
   Browser is incompatiable.
   </canvas>
 
   </div>
-  <div id="footline">
-  Use White Marker As Eraser.
-</div>
 
 <%= javascript_include_tag 'boards', 'data-turbolinks-track' => true %>
 <%= javascript_include_tag 'simplecolor', 'data-turbolinks-track' => true %>

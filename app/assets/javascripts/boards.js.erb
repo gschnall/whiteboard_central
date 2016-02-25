@@ -136,6 +136,10 @@ function clearIm(){
 //HIDE COLOR PICKER
 $(document).ready(function(){
 
+  $('#eraser').click(function(){
+    setColor('white');
+  });
+
   $('.simple_color_kitchen_sink').simpleColor({
     boxHeight: 40,
     cellWidth: 20,

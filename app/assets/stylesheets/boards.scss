@@ -1,6 +1,12 @@
 // Place all the styles related to the boards controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+a:link{
+  text-decoration: none;
+}
+a{
+  color:darkblue;
+}
 *{
     box-sizing: border-box;
       -moz-box-sizing: border-box;
@@ -24,15 +30,6 @@ body
               background-color: #242E29;
                 color: white;
 }
-#logo
-{
-    float:left;
-      padding: 15px;
-        background-color: #000000;
-          height: 50px;
-            left: 0;
-              top: 0;
-}
 #footline
 {
     bottom:0;
@@ -52,6 +49,7 @@ body
             text-align: center;
               padding: 5px;
                 border-radius: 15px;
+                cursor:pointer;
 
 }
 .radcontrol:active
@@ -67,7 +65,7 @@ body
 {
     float: left;
       height: 50px;
-        width:220px;
+        width:200px;
           padding: 12px;
 }
 #radval
@@ -104,10 +102,6 @@ body
                 background-color: cyan;
 }
 
-.swatch.active
-{
-    border:2px solid white;
-}
 
 #col
 {
@@ -116,22 +110,47 @@ body
   float: left;
 }
 
+.buttonOnBoard{
+    width: 56px;
+    height: 30px;
+    font-size: 14px;
+    padding: 6px;
+    margin-top:10px;
+    background-color: rgb(213, 213, 213);
+    float: left;
+    border-radius: 4px;
+    text-align: center;
+    margin-left: 5px;
+    font-weight: bolder;
+    cursor:pointer;
+}
 #save,#erase,#clear
 {
-    width: 80px;
-      height: 30px;
-        padding: 6px;
-          margin-top:10px;
-            background-color: #43A9B0;
-              float: left;
-                border-radius: 4px;
-                  text-align: center;
-                    margin-left: 5px;
-
+    width: 56px;
+    height: 30px;
+    font-size: 14px;
+    padding: 6px;
+    margin-top:10px;
+    background-color: rgb(213, 213, 213);
+    float: left;
+    border-radius: 4px;
+    text-align: center;
+    margin-left: 5px;
+    font-weight: bolder;
+    cursor:pointer;
 }
-#save:hover,#erase:hover,#clear:hover
+#eraser{
+  color:rgb(158, 55, 10);
+}
+#save{
+  color:rgb(2, 131, 19);
+}
+#clear{
+  color:rgb(170, 34, 34);
+}
+.buttonOnBoard:hover,#save:hover,#erase:hover,#clear:hover
 {
-    background-color: #818181;
+    background-color: white;
 }
 
 

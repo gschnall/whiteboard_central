@@ -6,6 +6,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 <body>
 
@@ -13,12 +14,12 @@
   <%= link_to 'Logout', logout_path %>
 <% else %>
   <%= link_to 'Login', new_session_path %>
-<% end %> 
+<% end %>
 
 <% if flash[:success] %>
-    <div class="alert alert-success"><%= flash[:success] %></div>
+    <div class="popup alert alert-success"><%= flash[:success] %></div>
 <% elsif flash[:fail] %>
-    <div class="alert alert-warning"><%= flash[:fail] %></div>
+    <div class="popup alert alert-warning"><%= flash[:fail] %></div>
 <% end %>
 <script>$('.alert').delay(2100).slideUp()</script>
 
