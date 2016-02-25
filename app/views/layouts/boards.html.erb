@@ -8,11 +8,14 @@
   <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 </head>
 <body>
-
+  <% if flash[:success] %>
+      <div class="alert alert-success"><%= flash[:success] %></div>
+  <% elsif flash[:failure] %>
+      <div class="alert alert-warning"><%= flash[:fail] %></div>
+  <% end %>
+  <script>$('.alert').delay(2100).slideUp()</script>
 <div id="toolbar">
-    <div id="logo">Draw-Board</div>
-    <div id="free">WhiteBoard-Central</div>
-    <div id="colors"></div>
+    <div id="free">WhiteBoard-Central</div> <div id="colors"></div>
     <div id="rad">
       BrushSize <span id="radval">10</span>
       <div id="decrad" class="radcontrol">-</div>
@@ -30,8 +33,8 @@
   Use White Marker As Eraser.
 </div>
 
-<%= yield %>
 
 <%= javascript_include_tag 'boards', 'data-turbolinks-track' => true %>
+<%= yield %>
 </body>
 </html>

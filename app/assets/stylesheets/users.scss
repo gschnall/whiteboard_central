@@ -1,10 +1,29 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+$primaryColor: lightgrey;
+$standardMargin: 30px;
+
 body {
-      padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+      background-color: $primaryColor;
+      padding-top: 70px; 
 }
 
 footer {
       margin: 50px 0;
 }
+
+
+/*
+h1{
+  font-size:64px;
+  margin-bottom: $standardMargin * 2;
+  span {
+    color: blue;
+  }
+}
+*/
+
+
+

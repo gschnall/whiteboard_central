@@ -1,8 +1,10 @@
 class BoardsController < ApplicationController
+  #@user = current_user
   require 'base64'
-  require 'mini_magick'
+  #require 'mini_magick'
+  skip_before_filter :verify_authenticity_token
 
-  before_action :authorize, only:[:new,:create,:edit, :update,:destroy]
+  #before_action :authorize, only:[:new]
 
   def index
     @board = Board.all
@@ -17,25 +19,32 @@ class BoardsController < ApplicationController
   end
   
   # FOR SOME REASON YOU NEED THIS FOR AJAX TO WORK??
-  protect_from_forgery
+  # protect_from_forgery
 
   def create
-    @img_path = Time.now.strftime("%d%m%Y%h%M%S") + "_" + (0...16).map {('a'..'z').to_a[rand(26)] }.join  
-    File.open("#{Rails.root}/public/uploads/boards/#{@img_path}.png", 'wb') do |f|
+
+    # CHECK IF BOARD IS BEING UPDATED OR CREATED
+    @update_board = @board ? true : false
+    if @update_board # if board is being updated
+      @board = Board.find(params[:id])
+      @img_path = Boards.imagepath + ".png"
+    else # if board brand new 
+      @board = current_user.boards.new()
+      @img_path = Time.now.strftime("%d%m%Y%h%M%S") + "_" + (0...16).map {('a'..'z').to_a[rand(26)] }.join  
+    end
+    # Proceed to Update or Create new board
+    File.open("#{Rails.root}/public/images/#{@img_path}.png", 'wb') do |f|
       f.write(params[:image].read)
     end  
-    @board = Board.new
+    #@board = Board.new
     # Declare Image Attributes
     @board.imagepath = @img_path + ".png"
-    img = MiniMagick::Image.open("#{Rails.root}/public/uploads/boards/#{@img_path}.png")
+    img = MiniMagick::Image.open("#{Rails.root}/public/images/#{@img_path}.png")
     @board.width = img.width
     @board.height = img.height
     @board.likes = 0
     @board.private = false 
-    # Save Board
     if @board.save
-      # Save Board to Current User's Boards
-      current_user.boards << @board
       flash[:success] = "White Board Saved Son!"
     else
       flash[:failure] = "Oops, There was a problem...Please Try again later."
@@ -43,11 +52,22 @@ class BoardsController < ApplicationController
   end
 
   def edit
-    @board = Board.find(params[:id])
+    logger.debug Board.find(params[:id])
+    $global_board = Board.find(params[:id])
+    board = Board.find
+    file = open("#{Rails.root}/public/images/#{@board.imagepath}", "rb")
+    @image_data = Base64.encode64(file.read)
+    File.open("#{Rails.root}/public/images/#{@board.imagepath}.png", 'rb') do |f|
+      @image = Base64.encode64(f.read)
+    end
   end
 
   def update
     @board = Board.find(params[:id])
+    @img_path = Board.imagepath  
+    File.open("#{Rails.root}/public/images/#{@img_path}.png", 'wb') do |f|
+      f.write(params[:image].read)
+    end  
     if @board.update_attributes(board_params)
       redirect_to board_path @board
     end
@@ -62,7 +82,7 @@ class BoardsController < ApplicationController
 
   private
     def board_params
-      params.require(:board).permit(:title) #tag_list later 
+      params.require(:board).permit(:tag_list) 
     end
 #Controller Ending
 end
