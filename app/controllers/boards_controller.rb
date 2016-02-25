@@ -22,7 +22,6 @@ class BoardsController < ApplicationController
   # protect_from_forgery
 
   def create
-
     # CHECK IF BOARD IS BEING UPDATED OR CREATED
     @update_board = @board ? true : false
     if @update_board # if board is being updated
@@ -53,24 +52,21 @@ class BoardsController < ApplicationController
 
   def edit
     logger.debug Board.find(params[:id])
-    $global_board = Board.find(params[:id])
-    board = Board.find
+    @board = Board.find(params[:id])
     file = open("#{Rails.root}/public/images/#{@board.imagepath}", "rb")
     @image_data = Base64.encode64(file.read)
-    File.open("#{Rails.root}/public/images/#{@board.imagepath}.png", 'rb') do |f|
+    File.open("#{Rails.root}/public/images/#{@board.imagepath}", 'rb') do |f|
       @image = Base64.encode64(f.read)
     end
   end
 
   def update
     @board = Board.find(params[:id])
-    @img_path = Board.imagepath  
-    File.open("#{Rails.root}/public/images/#{@img_path}.png", 'wb') do |f|
-      f.write(params[:image].read)
-    end  
-    if @board.update_attributes(board_params)
-      redirect_to board_path @board
-    end
+    @img_path = @board.imagepath  
+    logger.debug @img_path
+    File.open("#{Rails.root}/public/images/#{@board.imagepath}", "wb") { |f|
+        f.write(params[:image].read)
+    }
   end
 
   def destroy

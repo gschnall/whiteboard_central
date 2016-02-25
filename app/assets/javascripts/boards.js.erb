@@ -111,6 +111,9 @@ saveButton.addEventListener('click',saveImage);
 
 function saveImage(){
   console.log('sending..')
+  var arr = String(window.location.href).split('/') 
+  var check_path = arr[arr.length -1]
+  
   var dataURL = canvas.toDataURL('image/png');
   //window.open(dataURL,'_blank','location=0, menubar=0');
    // Get our file
@@ -120,13 +123,24 @@ function saveImage(){
     // Append our Canvas image file to the form data
   fd.append("image", file);
     // And send it
-  $.ajax({
-     url: "/boards/",
-     type: "POST",
-     data: fd,
-     processData: false,
-     contentType: false,
-  });
+  if(check_path == "edit" ){
+    $.ajax({
+       url: "/boards/" + String(arr[arr.length -2]) + "/",
+       type: "PATCH",
+       data: fd,
+       processData: false,
+       contentType: false,
+    });
+  }
+  else{
+    $.ajax({
+       url: "/boards/",
+       type: "POST",
+       data: fd,
+       processData: false,
+       contentType: false,
+    });
+  }
 }
 
 var clearButton = document.getElementById('clear');
