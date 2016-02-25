@@ -62,16 +62,6 @@ incRad.addEventListener('click',function(){
 setRadius(defaultRad);
 
 //color
-var colors = ['black','white','red','blue','yellow','green', 'purple']
-
-for(var i=0,n=colors.length;i<n;i++){
-  var swatch = document.createElement('div');
-  swatch.className = 'swatch';
-  swatch.style.backgroundColor = colors[i];
-  swatch.addEventListener('click',setSwatch);
-  document.getElementById('colors').appendChild(swatch);
-}
-
 function setColor(color)
 {
   context.fillStyle = color;
@@ -82,19 +72,13 @@ function setColor(color)
   }
 }
 
-function setSwatch(e){
-  var swatch = e.target;
-  setColor(swatch.style.backgroundColor);
-  swatch.className += ' active';
-}
 
-setSwatch({target: document.getElementsByClassName('swatch')[0]});
 
 // ---SAVE FUNCTIONALITY HERE---
 
     // Convert dataURL to Blob Object
 function dataURLtoBlob(dataURL) {
-    // Decode the dataURL    
+    // Decode the dataURL
     var binary = atob(dataURL.split(',')[1]);
     // Create 8-bit unsigned array
     var array = [];
@@ -111,9 +95,9 @@ saveButton.addEventListener('click',saveImage);
 
 function saveImage(){
   console.log('sending..')
-  var arr = String(window.location.href).split('/') 
+  var arr = String(window.location.href).split('/')
   var check_path = arr[arr.length -1]
-  
+
   var dataURL = canvas.toDataURL('image/png');
   //window.open(dataURL,'_blank','location=0, menubar=0');
    // Get our file
@@ -148,3 +132,22 @@ clearButton.addEventListener('click',clearIm);
 function clearIm(){
   location.reload();
 }
+
+//HIDE COLOR PICKER
+$(document).ready(function(){
+
+  $('.simple_color_kitchen_sink').simpleColor({
+    boxHeight: 40,
+    cellWidth: 20,
+    cellHeight: 20,
+    chooserCSS: {  'border': '1px solid #660033' },
+    displayCSS: { 'margin-top': '-10px','border': '2px solid white' },
+    displayColorCode: true,
+    livePreview: true,
+    onSelect: function(hex, element) {
+      setColor('#'+hex);
+      console.log(hex)
+    },
+  });
+
+});
