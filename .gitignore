@@ -8,7 +8,7 @@
 /.bundle
 
 public/uploads/boards/*
-public/images/*
+public/images/*.png
 app/assets/boards/*
 
 # Ignore all logfiles and tempfiles.
