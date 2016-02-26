@@ -139,23 +139,6 @@ function clearIm(){
 //HIDE COLOR PICKER
 $(document).ready(function(){
 
-  var canvas = $('#canvas')
-  var context = canvas.getContext('2d')
-  context.drawImage(image_id,0,0);
-  var arr = String(window.location.href).split('/')
-  var check_path = arr[arr.length -1]
-  /*
-  if(check_path == "edit" ){
-    console.log("fire event")
-    var image_id = document.getElementById('image_to_canvas')
-    //context.clearRect(0, 0, canvas.width, canvas.height);
-    $("#image_to_canvas").hide();
-      var canvas = $('#canvas')
-      var context = canvas.getContext('2d')
-      context.drawImage(image_id,0,0);
-}
-*/
-
   $('#eraser').click(function(){
     setColor('white');
   });
@@ -173,5 +156,11 @@ $(document).ready(function(){
       console.log(hex)
     },
   });
+  
+  //Insert Picture into Canvas
+  var image_id = document.getElementById('image_to_canvas')
+  var canvas = document.getElementById('canvas')
+  var context = canvas.getContext('2d')
+  context.drawImage(image_id,0,0);
 
 });
