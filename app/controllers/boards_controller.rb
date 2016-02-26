@@ -1,4 +1,6 @@
 class BoardsController < ApplicationController
+  before_action :authorize 
+    
   #@user = current_user
   require 'base64'
   require 'fileutils'
@@ -19,7 +21,6 @@ class BoardsController < ApplicationController
     @board = Board.new
   end
   
-  # FOR SOME REASON YOU NEED THIS FOR AJAX TO WORK??
   # protect_from_forgery
 
   def create
@@ -75,6 +76,18 @@ class BoardsController < ApplicationController
     FileUtils.rm("#{Rails.root}/public/images/#{@board.imagepath}") 
     if @board.destroy
       redirect_to(:back) 
+    end
+  end
+
+  def makePrivate
+    @board = Board.find(params[:id])
+    if @board.private
+      @board.private = false;
+    else
+      @board.private = true;
+    end
+    if @board.save
+      redirect_to(:back)
     end
   end
 

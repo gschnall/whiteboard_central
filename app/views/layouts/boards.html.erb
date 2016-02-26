@@ -2,10 +2,8 @@
 <html>
 <head>
   <title>WhiteboardCentral</title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <%= stylesheet_link_tag    'boards', media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 <body>
@@ -15,8 +13,8 @@
 
     <div id="rad">
       BrushSize <span id="radval">10</span>
-      <div id="decrad" class="radcontrol"><i class="fa fa-plus"></i></div>
-      <div id="incrad" class="radcontrol"><i class="fa fa-minus"></i></div>
+      <div id="decrad" class="radcontrol"><i class="fa fa-minus"></i></div>
+      <div id="incrad" class="radcontrol"><i class="fa fa-plus"></i></div>
     </div>
     <button class="buttonOnBoard" id="eraser"><i class="fa fa-lg fa-eraser"></i></button>
     <button id="save" class="buttonOnBoard "><%= link_to '', users_path + "/" + current_user.id.to_s, class:"fa fa-lg fa-floppy-o"  %></button>
@@ -39,7 +37,7 @@
   </div>
 
 <%= javascript_include_tag 'boards', 'data-turbolinks-track' => true %>
-<%= javascript_include_tag 'simplecolor', 'data-turbolinks-track' => true %>
 <%= yield %>
+<%= javascript_include_tag 'simplecolor', 'data-turbolinks-track' => true %>
 </body>
 </html>

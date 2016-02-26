@@ -1,0 +1,6 @@
+<% @users.each do |user| %>
+  <div class="user">
+    <h1 class="user-title"><%= link_to user.title, user %></h1>
+    <p class="user-content"><%= user.content %></p>
+  </div>
+<% end %>
