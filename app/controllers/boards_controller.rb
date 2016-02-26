@@ -76,7 +76,7 @@ class BoardsController < ApplicationController
     @board = Board.find(params[:id])
     FileUtils.rm("#{Rails.root}/public/images/#{@board.imagepath}") 
     if @board.destroy
-      redirect_to(:back) 
+      return
     end
   end
 
