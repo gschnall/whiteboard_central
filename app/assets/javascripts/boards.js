@@ -159,6 +159,14 @@ function readImage() {
         FR.readAsDataURL( this.files[0] );
     }
 }
+  //Insert Picture into Canvas
+  var image_id = document.getElementById('image_to_canvas')
+  if (image_id) {
+    var canvas = document.getElementById('canvas')
+    var context = canvas.getContext('2d')
+    context.drawImage(image_id,0,0);
+    $('#image_to_canvas').hide()
+  }
 
 el("fileUpload").addEventListener("change", readImage, false);
 
