@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">- Public Boards -</a>
+            <a class="navbar-brand" href="#">- WhiteBoard-Central -</a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -23,7 +23,7 @@
                     <% end %>
                 </li>
                 <li>
-                    <a href="#">- About -</a>
+                    <%= link_to '- Profile -', users_path + "/" + current_user.id.to_s %> 
                 </li>
                 <li>
                     <%= link_to '- Logout -', logout_path %>
@@ -130,6 +130,8 @@
 $(document).ready(function(){
   $('#button_delete').on('click',this,function(){
     window.location.reload()
+    (this).closest('div').remove();
+    console.log('delete action fired')
   })
 })
 </script>
