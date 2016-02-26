@@ -185,9 +185,11 @@ $(document).ready(function(){
 
   //Insert Picture into Canvas
   var image_id = document.getElementById('image_to_canvas')
-  var canvas = document.getElementById('canvas')
-  var context = canvas.getContext('2d')
-  context.drawImage(image_id,0,0);
-  $('#image_to_canvas').hide()
+  if (image_id) {
+    var canvas = document.getElementById('canvas')
+    var context = canvas.getContext('2d')
+    context.drawImage(image_id,0,0);
+    $('#image_to_canvas').hide()
+  }
 
 });
