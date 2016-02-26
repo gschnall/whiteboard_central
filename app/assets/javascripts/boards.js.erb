@@ -118,6 +118,7 @@ function saveImage(){
        processData: false,
        contentType: false,
     });
+    confirm("Board Saved!")
   }
   else{
     $.ajax({
@@ -127,6 +128,8 @@ function saveImage(){
        processData: false,
        contentType: false,
     });
+    confirm("Board Created")
+    context.clearRect(0, 0, canvas.width, canvas.height);
   }
 }
 

@@ -46,6 +46,7 @@ class BoardsController < ApplicationController
     @board.likes = 0
     @board.private = false 
     if @board.save
+      redirect_to edit_board_path(@board)
       flash[:success] = "White Board Saved Son!"
     else
       flash[:failure] = "Oops, There was a problem...Please Try again later."
@@ -53,24 +54,22 @@ class BoardsController < ApplicationController
   end
 
   def edit
-    logger.debug Board.find(params[:id])
+    #logger.debug Board.find(params[:id])
     @board = Board.find(params[:id])
-    file = open("#{Rails.root}/public/images/#{@board.imagepath}", "rb")
-    @image_data = Base64.encode64(file.read)
-    File.open("#{Rails.root}/public/images/#{@board.imagepath}", 'rb') do |f|
-      @image = Base64.encode64(f.read)
-    end
   end
 
   def update
     @board = Board.find(params[:id])
-    @img_path = @board.imagepath  
+    @img_path = Time.now.strftime("%d%m%Y%h%M%S") + "_" + (0...16).map {('a'..'z').to_a[rand(26)] }.join  
     #logger.debug @img_path
     File.open("#{Rails.root}/public/images/#{@img_path}", "wb") { |f|
         f.write(params[:image].read)
     }
+    FileUtils.rm("#{Rails.root}/public/images/#{@board.imagepath}") 
     @board.imagepath = @img_path
-    @board.save
+    if @board.save
+      redirect_to(:back)
+    end
   end
 
   def destroy
