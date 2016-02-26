@@ -45,14 +45,11 @@ class BoardsController < ApplicationController
     @board.height = img.height
     @board.likes = 0
     @board.private = false
-   respond_to do |format|
-      if @board.save
-        format.html { redirect_to edit_board_path(@board)
-        flash[:success] = "White Board Saved Son!"}
-        format.js {}
-      else
-        flash[:failure] = "Oops, There was a problem...Please Try again later."
-      end
+    if @board.save
+      redirect_to edit_board_path(@board)
+      flash[:success] = "White Board Saved Son!"
+    else
+      flash[:failure] = "Oops, There was a problem...Please Try again later."
     end
   end
 
