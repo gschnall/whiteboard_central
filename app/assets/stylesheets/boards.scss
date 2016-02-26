@@ -110,6 +110,21 @@ body
   float: left;
 }
 
+#fileUpload{
+    width: 104px;
+    height: 30px;
+    font-size: 14px;
+    padding: 6px;
+    margin-top:10px;
+    background-color: rgb(213, 213, 213);
+    float: left;
+    border-radius: 4px;
+    text-align: center;
+    margin-left: 5px;
+    font-weight: bolder;
+    cursor:pointer;
+
+}
 .buttonOnBoard{
     width: 56px;
     height: 30px;

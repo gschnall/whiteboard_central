@@ -65,10 +65,12 @@ class BoardsController < ApplicationController
   def update
     @board = Board.find(params[:id])
     @img_path = @board.imagepath  
-    logger.debug @img_path
-    File.open("#{Rails.root}/public/images/#{@board.imagepath}", "wb") { |f|
+    #logger.debug @img_path
+    File.open("#{Rails.root}/public/images/#{@img_path}", "wb") { |f|
         f.write(params[:image].read)
     }
+    @board.imagepath = @img_path
+    @board.save
   end
 
   def destroy
