@@ -11703,18 +11703,20 @@ function clearIm(){
 }
 
 //IMAGE UPLOADER
+
 function el(id){return document.getElementById(id);}
 
 var canvas  = el("canvas");
 var context = canvas.getContext("2d");
-
 function readImage() {
     if ( this.files && this.files[0] ) {
         var FR= new FileReader();
         FR.onload = function(e) {
            var img = new Image();
            img.onload = function() {
-             context.drawImage(img, 0, 0);
+             console.log(this.width)
+        		 var imgProportions = calculateAspectRatio(this.width, this.height, canvas.width, canvas.height);
+             context.drawImage(img, (canvas.width/1.05) - imgProportions.width, 0, imgProportions.width, imgProportions.height);
            };
            img.src = e.target.result;
         };
@@ -11722,7 +11724,9 @@ function readImage() {
     }
 }
 
-  // Got to calculate Image aspect ratio
+el("fileUpload").addEventListener("change", readImage, false);
+
+  // calculate Image aspect ratio
 	function calculateAspectRatio(srcWidth, srcHeight, maxWidth, maxHeight) {
     var ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
     return { width: srcWidth*ratio, height: srcHeight*ratio };
@@ -11743,8 +11747,6 @@ function readImage() {
       $('#divLoading').hide()
     }
   })
-
-el("fileUpload").addEventListener("change", readImage, false);
 
 //HIDE COLOR PICKER
 $(document).ready(function(){
