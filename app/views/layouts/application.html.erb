@@ -9,12 +9,6 @@
 </head>
 <body>
 
-<% if logged_in? %>
-  <%= link_to 'Logout', logout_path %>
-<% else %>
-  <%= link_to 'Login', new_session_path %>
-<% end %>
-
 <% if flash[:success] %>
     <div class="alert alert-success"><%= flash[:success] %></div>
 <% elsif flash[:fail] %>
