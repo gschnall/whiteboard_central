@@ -185,6 +185,11 @@ v_wrap
   top : 0;
 }
 
+#image_to_canvas{
+  position: absolute;
+  left: -9999px;
+}
+
 
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,300);
