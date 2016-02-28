@@ -74,7 +74,9 @@ class BoardsController < ApplicationController
 
   def destroy
     @board = Board.find(params[:id])
-    FileUtils.rm("#{Rails.root}/public/images/#{@board.imagepath}")
+    if File.exists?("#{Rails.root}/public/images/#{@board.imagepath}")
+      FileUtils.rm("#{Rails.root}/public/images/#{@board.imagepath}")
+    end
     if @board.destroy
       return
     end
