@@ -159,14 +159,28 @@ function readImage() {
         FR.readAsDataURL( this.files[0] );
     }
 }
-  //Insert Picture into Canvas
-  var image_id = document.getElementById('image_to_canvas')
-  if (image_id) {
-    var canvas = document.getElementById('canvas')
-    var context = canvas.getContext('2d')
-    context.drawImage(image_id,0,0);
-    $('#image_to_canvas').hide()
-  }
+
+  // Got to calculate Image aspect ratio
+	function calculateAspectRatio(srcWidth, srcHeight, maxWidth, maxHeight) {
+    var ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
+    return { width: srcWidth*ratio, height: srcHeight*ratio };
+ }
+
+  //Insert Picture into Canvas::
+  $(window).load(function(){
+    var image_id = document.getElementById('image_to_canvas')
+    if (image_id) {
+      var canvas = document.getElementById('canvas')
+      var context = canvas.getContext('2d')
+  		// Get Aspect Ratio
+  		var imgProportions = calculateAspectRatio(image_id.clientWidth, image_id.clientHeight, canvas.width, canvas.height);
+      // Draw Image to Canvas
+      context.drawImage(image_id,0,0,imgProportions.width, imgProportions.height);
+      // Remove image from page
+      $('#image_to_canvas').hide()
+      $('#divLoading').hide()
+    }
+  })
 
 el("fileUpload").addEventListener("change", readImage, false);
 
@@ -190,14 +204,5 @@ $(document).ready(function(){
       console.log(hex)
     },
   });
-
-  //Insert Picture into Canvas
-  var image_id = document.getElementById('image_to_canvas')
-  if (image_id) {
-    var canvas = document.getElementById('canvas')
-    var context = canvas.getContext('2d')
-    context.drawImage(image_id,0,0);
-    $('#image_to_canvas').hide()
-  }
 
 });
