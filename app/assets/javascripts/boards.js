@@ -1,13 +1,14 @@
 //= require jquery
 //= require jquery_ujs
-
+var mousePosition = { x: -1, y: -1 };
 var canvas = document.getElementById('canvas');
 var context= canvas.getContext('2d');
 var radius = 10;
 var dragging = false;
+var inserting_image = false;
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+//canvas.width = window.innerWidth;
+//canvas.height = window.innerHeight;
 context.lineWidth = 2*radius;
 
 var putPoint = function(e){
@@ -141,22 +142,60 @@ function clearIm(){
 }
 
 //IMAGE UPLOADER
-
 function el(id){return document.getElementById(id);}
 
 var canvas  = el("canvas");
 var context = canvas.getContext("2d");
 function readImage() {
     if ( this.files && this.files[0] ) {
+        inserting_image = true;
         var FR= new FileReader();
+        var imageCache = []
         FR.onload = function(e) {
            var img = new Image();
+           console.log('ok')
            img.onload = function() {
-             console.log(this.width)
         		 var imgProportions = calculateAspectRatio(this.width, this.height, canvas.width, canvas.height);
-             context.drawImage(img, (canvas.width/1.05) - imgProportions.width, 0, imgProportions.width, imgProportions.height);
+             $('#image_box').css('display', 'block')
+             $('#image_box').css('width', imgProportions.width)
+             $('#image_box').css('height', imgProportions.height)
+             $('#image_box').css('background-image', 'url('+ img.src +' )')
+              // ---Adjust Image Size with Arrow Keys-----
+                $(document).keydown(function(e){
+                  switch(e.which) {
+                      case 37: // left
+                      imgProportions.width -= 20; $('#image_box').css('width', imgProportions.width); // up
+                      imgProportions.height -= 20; $('#image_box').css('height', imgProportions.height); // up
+                      $('#image_box').css('background-image', 'url('+ img.src +' )')
+                      break;
+                      case 38: // up
+                      imgProportions.width += 20; $('#image_box').css('width', imgProportions.width); // up
+                      imgProportions.height += 20; $('#image_box').css('height', imgProportions.height); // up
+                      $('#image_box').css('background-image', 'url('+ img.src +' )')
+                      break;
+                      case 39: // right
+                      imgProportions.width += 20; $('#image_box').css('width', imgProportions.width); // up
+                      imgProportions.height += 20; $('#image_box').css('height', imgProportions.height); // up
+                      $('#image_box').css('background-image', 'url('+ img.src +' )')
+                      break;
+                      case 40: // down
+                      imgProportions.width -= 20; $('#image_box').css('width', imgProportions.width); // up
+                      imgProportions.height -= 20; $('#image_box').css('height', imgProportions.height); // up
+                      $('#image_box').css('background-image', 'url('+ img.src +' )')
+                      break;
+                      default: return; // exit this handler for other keys
+                  }
+                  e.preventDefault()
+                })
+              // ---Adjust Image Size with Arrow Keys-----
+             $('#image_box').on('click', function(){
+                 var imgBox = $('#image_box')
+                 context.drawImage(img, mousePosition.x - (imgBox.width()/2)-25, mousePosition.y - (imgBox.height()/2)-44, imgProportions.width, imgProportions.height);
+                 $('#image_box').css('display', 'none')
+               })
            };
            img.src = e.target.result;
+           imageCache.push(String(img.src))
         };
         FR.readAsDataURL( this.files[0] );
     }
@@ -206,5 +245,17 @@ $(document).ready(function(){
       console.log(hex)
     },
   });
+
+  //Box Image Functionality
+  $(document).bind('mousemove', function(e){
+    var imgBox = $('#image_box')
+    imgBox.css({
+      left: e.pageX - imgBox.width()/2,
+      top: e.pageY -imgBox.height()/2
+    })
+    mousePosition.x = e.pageX
+    mousePosition.y = e.pageY
+  })
+
 
 });

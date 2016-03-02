@@ -18,6 +18,8 @@ a{
 body
 {
     margin:0;
+    height:100%;
+    overflow: hidden;
 }
 #toolbar
 {
@@ -188,6 +190,22 @@ v_wrap
 #image_to_canvas{
   position: absolute;
   left: -9999px;
+}
+
+#image_box{
+  text-align: center;
+  color:red;
+  opacity: .60;
+  position: absolute;
+  float:left;
+  display:none;
+  width: 100px;
+	height: 50px;
+	margin-top: -50px;
+	margin-left: -25px;
+	background: red;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 
