@@ -5,7 +5,8 @@ var canvas = document.getElementById('canvas');
 var context= canvas.getContext('2d');
 var radius = 10;
 var dragging = false;
-var previousImg = ""
+var previousImg = ['PlaceHolderImageToStartArray']
+var previousImgFileName = ""
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -154,51 +155,56 @@ function readImage() {
     if ( this.files && this.files[0] ) {
         inserting_image = true;
         var FR= new FileReader();
+        //var savePreviousImageFileName = this.files[0].name
         FR.onload = function(e) {
            var img = new Image();
-           img.onload = function() {
-        		 var imgProportions = calculateAspectRatio(this.width, this.height, canvas.width, canvas.height);
-             $('#image_box').css('display', 'block')
-             $('#image_box').css('width', imgProportions.width)
-             $('#image_box').css('height', imgProportions.height)
-             $('#image_box').css('background-image', 'url('+ img.src +' )')
-              // ---Adjust Image Size with Arrow Keys-----
-                $(document).keydown(function(e){
-                  switch(e.which) {
-                      case 37: // left
-                      imgProportions.width -= 20; $('#image_box').css('width', imgProportions.width); // up
-                      imgProportions.height -= 20; $('#image_box').css('height', imgProportions.height); // up
-                      $('#image_box').css('background-image', 'url('+ img.src +' )')
-                      break;
-                      case 38: // up
-                      imgProportions.width += 20; $('#image_box').css('width', imgProportions.width); // up
-                      imgProportions.height += 20; $('#image_box').css('height', imgProportions.height); // up
-                      $('#image_box').css('background-image', 'url('+ img.src +' )')
-                      break;
-                      case 39: // right
-                      imgProportions.width += 20; $('#image_box').css('width', imgProportions.width); // up
-                      imgProportions.height += 20; $('#image_box').css('height', imgProportions.height); // up
-                      $('#image_box').css('background-image', 'url('+ img.src +' )')
-                      break;
-                      case 40: // down
-                      imgProportions.width -= 20; $('#image_box').css('width', imgProportions.width); // up
-                      imgProportions.height -= 20; $('#image_box').css('height', imgProportions.height); // up
-                      $('#image_box').css('background-image', 'url('+ img.src +' )')
-                      break;
-                      default: return; // exit this handler for other keys
-                  }
-                  e.preventDefault()
-                })
-              // ---Adjust Image Size with Arrow Keys-----
-             $('#image_box').on('click', function(){
-                 var imgBox = $('#image_box')
-                 context.drawImage(img, mousePosition.x - (imgBox.width()/2)-25, mousePosition.y - (imgBox.height()/2)-44, imgProportions.width, imgProportions.height);
-                 $('#image_box').css('display', 'none')
-                 $('#image_box').css('background-image', 'none')
-               })
-           };
+             img.onload = function() {
+          		 var imgProportions = calculateAspectRatio(this.width, this.height, canvas.width, canvas.height);
+               $('#image_box').css('display', 'block')
+               $('#image_box').css('width', imgProportions.width)
+               $('#image_box').css('height', imgProportions.height)
+               $('#image_box').css('background-image', 'url('+ img.src +' )')
+                // ---Adjust Image Size with Arrow Keys-----
+                  $(document).keydown(function(e){
+                    switch(e.which) {
+                        case 37: // left
+                        imgProportions.width -= 20; $('#image_box').css('width', imgProportions.width); // up
+                        imgProportions.height -= 20; $('#image_box').css('height', imgProportions.height); // up
+                        $('#image_box').css('background-image', 'url('+ img.src +' )')
+                        break;
+                        case 38: // up
+                        imgProportions.width += 20; $('#image_box').css('width', imgProportions.width); // up
+                        imgProportions.height += 20; $('#image_box').css('height', imgProportions.height); // up
+                        $('#image_box').css('background-image', 'url('+ img.src +' )')
+                        break;
+                        case 39: // right
+                        imgProportions.width += 20; $('#image_box').css('width', imgProportions.width); // up
+                        imgProportions.height += 20; $('#image_box').css('height', imgProportions.height); // up
+                        $('#image_box').css('background-image', 'url('+ img.src +' )')
+                        break;
+                        case 40: // down
+                        imgProportions.width -= 20; $('#image_box').css('width', imgProportions.width); // up
+                        imgProportions.height -= 20; $('#image_box').css('height', imgProportions.height); // up
+                        $('#image_box').css('background-image', 'url('+ img.src +' )')
+                        break;
+                        default: return; // exit this handler for other keys
+                    }
+                    e.preventDefault()
+                  })
+                // ---Adjust Image Size with Arrow Keys-----
+               $('#image_box').on('mouseup', function(){
+                   if(img.src != previousImg){
+                     var imgBox = $('#image_box')
+                     context.drawImage(img, mousePosition.x - (imgBox.width()/2)-25, mousePosition.y - (imgBox.height()/2)-44, imgProportions.width, imgProportions.height);
+                     $('#image_box').css('display', 'none')
+                     $('#image_box').css('background-image', 'none')
+                     previousImg = img.src
+                     $('input[type="file"]').val(null);
+                     img.src = ''
+                   }
+                 })
+           }
            img.src = e.target.result;
-           previousImg = img
         };
         FR.readAsDataURL( this.files[0] );
     }
@@ -220,8 +226,7 @@ el("fileUpload").addEventListener("change", readImage, false);
       var imagePathArr = $('#image_to_canvas').attr('src').split('/')
       //newImage.src = "https://s3-us-west-1.amazonaws.com/testwbc/uploads/" + imagePathArr[imagePathArr.length-1]
       newImage.src = $('#image_to_canvas').attr('src')
-      newImage.setAttribute('crossOrigin', "anonymous")  
-      console.log(newImage.src)
+      newImage.setAttribute('crossOrigin', "anonymous")
       var canvas = document.getElementById('canvas')
       var context = canvas.getContext('2d')
   		// Get Aspect Ratio
@@ -251,7 +256,7 @@ $(document).ready(function(){
     livePreview: true,
     onSelect: function(hex, element) {
       setColor('#'+hex);
-      console.log(hex)
+      //console.log(hex)
     },
   });
 
