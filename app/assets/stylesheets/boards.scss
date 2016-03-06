@@ -208,6 +208,21 @@ v_wrap
   background-repeat: no-repeat;
 }
 
+#float-form{
+  width:100%;
+  height:100%;
+  position:fixed; 
+  float:left;
+  margin:0 auto;
+  padding:52px;
+  top:0%;
+  right:0%;
+  z-index:2;
+  border:16px outset black;
+  background-color:lightgrey;
+  font-size:20px;
+}
+
 
 
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,300);

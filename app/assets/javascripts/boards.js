@@ -5,10 +5,10 @@ var canvas = document.getElementById('canvas');
 var context= canvas.getContext('2d');
 var radius = 10;
 var dragging = false;
-var inserting_image = false;
+var previousImg = ""
 
-//canvas.width = window.innerWidth;
-//canvas.height = window.innerHeight;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 context.lineWidth = 2*radius;
 
 var putPoint = function(e){
@@ -144,16 +144,18 @@ function clearIm(){
 //IMAGE UPLOADER
 function el(id){return document.getElementById(id);}
 
+function drawToCanvas(){
+
+}
+
 var canvas  = el("canvas");
 var context = canvas.getContext("2d");
 function readImage() {
     if ( this.files && this.files[0] ) {
         inserting_image = true;
         var FR= new FileReader();
-        var imageCache = []
         FR.onload = function(e) {
            var img = new Image();
-           console.log('ok')
            img.onload = function() {
         		 var imgProportions = calculateAspectRatio(this.width, this.height, canvas.width, canvas.height);
              $('#image_box').css('display', 'block')
@@ -192,10 +194,11 @@ function readImage() {
                  var imgBox = $('#image_box')
                  context.drawImage(img, mousePosition.x - (imgBox.width()/2)-25, mousePosition.y - (imgBox.height()/2)-44, imgProportions.width, imgProportions.height);
                  $('#image_box').css('display', 'none')
+                 $('#image_box').css('background-image', 'none')
                })
            };
            img.src = e.target.result;
-           imageCache.push(String(img.src))
+           previousImg = img
         };
         FR.readAsDataURL( this.files[0] );
     }
@@ -213,12 +216,18 @@ el("fileUpload").addEventListener("change", readImage, false);
   $(window).load(function(){
     var image_id = document.getElementById('image_to_canvas')
     if (image_id) {
+      var newImage = new Image();
+      var imagePathArr = $('#image_to_canvas').attr('src').split('/')
+      //newImage.src = "https://s3-us-west-1.amazonaws.com/testwbc/uploads/" + imagePathArr[imagePathArr.length-1]
+      newImage.src = $('#image_to_canvas').attr('src')
+      newImage.setAttribute('crossOrigin', "anonymous")  
+      console.log(newImage.src)
       var canvas = document.getElementById('canvas')
       var context = canvas.getContext('2d')
   		// Get Aspect Ratio
   		var imgProportions = calculateAspectRatio(image_id.clientWidth, image_id.clientHeight, canvas.width, canvas.height);
       // Draw Image to Canvas
-      context.drawImage(image_id,0,0,imgProportions.width, imgProportions.height);
+      context.drawImage(newImage,0,0,imgProportions.width, imgProportions.height);
       // Remove image from page
       $('#image_to_canvas').hide()
       $('#divLoading').hide()

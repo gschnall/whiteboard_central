@@ -1,4 +1,5 @@
-<%= image_tag @board.imagepath.to_s, id:"image_to_canvas"%>
+<%= image_tag @board.imagepath.to_s + ".png", id:"image_to_canvas" %>
+<!--<img src= '<#%= @board.title.to_s %>' id="image_to_canvas" sourcing='<#%= @board.title.to_s %>' >-->
 <div id="divLoading"></div>
 <div id="image_box">
 <br><br>
@@ -15,5 +16,4 @@
 var canvas = document.getElementById('canvas');
 canvas.width = <%= @board.width %>
 canvas.height = <%= @board.height %>
-
 </script>

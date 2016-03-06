@@ -1,0 +1,28 @@
+<div id="divLoading"></div>
+<div id="float-form">
+
+<h1>Edit Board Info</h1>
+<%= form_tag update_board_info_path,{:class => 'form-horizontal'} do %>
+    <fieldset>
+      <div class="form-group">
+          <%= label_tag :title, 'Title', class: 'col-md-4 control-label' %>
+        <div class="col-md-5">
+            <%= text_field_tag :title, params[:title], class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group">
+          <%= label_tag :tags, 'Tags', class: 'col-md-4 control-label' %>
+        <div class="col-md-5">
+            <%= text_area_tag :tag_list, nil, class: 'form-control' %>
+        </div>
+      </div>
+      <div class="form-group">
+          <div class="col-md-8 col-md-offset-4">
+              <%= submit_tag 'Update Info', class: 'btn btn-success' %>
+          </div>
+      </div>
+    </fieldset>
+<% end %>
+<%= image_tag @board.imagepath.to_s %>
+
+</div>

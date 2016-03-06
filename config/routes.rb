@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   delete 'boards/:id' => 'boards#destroy', as: :boards_destroy
   resources :boards
   get 'boards/:id/private' => 'boards#makePrivate', as: :make_board_private
-
+  get 'boards/:id/updateBoard' => 'boards#editInfo', as: :edit_board_info
+  post 'boards/:id/updateBoard' => 'boards#updateInfo', as: :update_board_info
 
 end
