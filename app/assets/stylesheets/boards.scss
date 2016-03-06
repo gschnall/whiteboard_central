@@ -194,8 +194,8 @@ v_wrap
 
 #image_box{
   text-align: center;
-  color:red;
   opacity: .60;
+  color:darkred;
   position: absolute;
   float:left;
   display:none;
@@ -203,9 +203,9 @@ v_wrap
 	height: 50px;
 	margin-top: -50px;
 	margin-left: -25px;
-	background: red;
   background-size: cover;
   background-repeat: no-repeat;
+  text-shadow:2px 2px 2px #FFF;
 }
 
 #float-form{

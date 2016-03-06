@@ -164,30 +164,36 @@ function readImage() {
                $('#image_box').css('width', imgProportions.width)
                $('#image_box').css('height', imgProportions.height)
                $('#image_box').css('background-image', 'url('+ img.src +' )')
-                // ---Adjust Image Size with Arrow Keys-----
+                // ---Adjust Image Size with Specific Keys-----
                   $(document).keydown(function(e){
                     switch(e.which) {
+                        case 187: // + or =
+                          imgProportions.width += 20; $('#image_box').css('width', imgProportions.width);
+                          imgProportions.height += 20; $('#image_box').css('height', imgProportions.height);
+                          $('#image_box').css('background-image', 'url('+ img.src +' )')
+                        break;
+                        case 189: // - minus
+                          imgProportions.width -= 20; $('#image_box').css('width', imgProportions.width);
+                          imgProportions.height -= 20; $('#image_box').css('height', imgProportions.height);
+                          $('#image_box').css('background-image', 'url('+ img.src +' )')
+                        break;
                         case 37: // left
-                        imgProportions.width -= 20; $('#image_box').css('width', imgProportions.width); // up
-                        imgProportions.height -= 20; $('#image_box').css('height', imgProportions.height); // up
-                        $('#image_box').css('background-image', 'url('+ img.src +' )')
+                          imgProportions.width -= 20; $('#image_box').css('width', imgProportions.width);
+                          $('#image_box').css('background-image', 'url('+ img.src +' )')
                         break;
                         case 38: // up
-                        imgProportions.width += 20; $('#image_box').css('width', imgProportions.width); // up
-                        imgProportions.height += 20; $('#image_box').css('height', imgProportions.height); // up
-                        $('#image_box').css('background-image', 'url('+ img.src +' )')
+                          imgProportions.height += 20; $('#image_box').css('height', imgProportions.height);
+                          $('#image_box').css('background-image', 'url('+ img.src +' )')
                         break;
                         case 39: // right
-                        imgProportions.width += 20; $('#image_box').css('width', imgProportions.width); // up
-                        imgProportions.height += 20; $('#image_box').css('height', imgProportions.height); // up
-                        $('#image_box').css('background-image', 'url('+ img.src +' )')
+                          imgProportions.width += 20; $('#image_box').css('width', imgProportions.width);
+                          $('#image_box').css('background-image', 'url('+ img.src +' )')
                         break;
                         case 40: // down
-                        imgProportions.width -= 20; $('#image_box').css('width', imgProportions.width); // up
-                        imgProportions.height -= 20; $('#image_box').css('height', imgProportions.height); // up
-                        $('#image_box').css('background-image', 'url('+ img.src +' )')
+                          imgProportions.height -= 20; $('#image_box').css('height', imgProportions.height); // up
+                          $('#image_box').css('background-image', 'url('+ img.src +' )')
                         break;
-                        default: return; // exit this handler for other keys
+                        default: return; // exit on other key presses 
                     }
                     e.preventDefault()
                   })
