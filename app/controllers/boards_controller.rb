@@ -65,6 +65,9 @@ class BoardsController < ApplicationController
   def edit
     #logger.debug Board.find(params[:id])
     @board = Board.find(params[:id])
+    if @board.private == true and current_user.id != @board.user.id 
+      redirect_to user_path(current_user)
+    end
     data = open(@board.title.to_s)
     File.open("#{Rails.root}/public/images/#{@board.imagepath}.png", "wb") { |f|
         f.write(data.read)

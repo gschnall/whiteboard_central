@@ -13,8 +13,7 @@ canvas.height = window.innerHeight;
 context.lineWidth = 2*radius;
 
 var putPoint = function(e){
-  if(dragging)
-  {
+  if(dragging){
   context.lineTo(e.clientX,e.clientY);
   context.stroke();
   context.beginPath();
@@ -193,7 +192,7 @@ function readImage() {
                           imgProportions.height -= 20; $('#image_box').css('height', imgProportions.height); // up
                           $('#image_box').css('background-image', 'url('+ img.src +' )')
                         break;
-                        default: return; // exit on other key presses 
+                        default: return; // exit on other key presses
                     }
                     e.preventDefault()
                   })

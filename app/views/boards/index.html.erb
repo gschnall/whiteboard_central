@@ -9,11 +9,13 @@
   <% end %>
 
 <% @board.each do |b| %>
+  <% if b.private == false %>
   <div class="user">
     <h2 style=""><%= link_to "| Board Owner: " + b.user.name+ " |", user_path(b.user) %></h2>
     <%= image_tag b.title.to_s, id: 'index_img_view' %><br>
             <button class="index_button"><a class="btn btn-md btn-primary" href=<%= '/boards/'+ b.id.to_s + '/edit' %>>Edit Board <div class="fa fa-lg fa-paint-brush"></div></a></button><br></br>
   </div>
   <hr>
+  <% end %>
 <% end %>
 </div>
