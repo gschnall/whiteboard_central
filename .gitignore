@@ -16,7 +16,7 @@ app/assets/boards/*
 !/log/.keep
 /tmp
 
-config/initializers/s3.rb
+#config/initializers/s3.rb
 
 config/initializers/secret_token.rb
 
