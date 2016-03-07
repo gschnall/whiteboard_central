@@ -215,6 +215,44 @@ v_wrap
   border: 7px outset grey;
 }
 
+#index_img_view{
+  max-width:260px;
+  margin:0;
+  border: 7px outset grey;
+  background-color:white;
+}
+
+#index_search_button{
+  background-color:black;
+  color:white;
+  height: 36px;
+  width: 100px;
+  cursor: pointer;
+  font-size:18px;
+  border-radius:6px;
+}
+
+.index_profile_button{
+  font-size:26px;
+  font-weight:bold;
+  height: 40px;
+  width: 180px;
+  color:darkblue;
+  border-radius:20px;
+  border: 4px outset darkgrey;
+}
+
+.index_button {
+  width: 260px;
+  height: 36px;
+}
+
+.index_button a{
+ color: green; 
+ font-size: 26px;
+ font-weight:bold;
+}
+
 #float-form{
   width:100%;
   height:100%;

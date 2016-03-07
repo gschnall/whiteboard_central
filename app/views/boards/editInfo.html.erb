@@ -1,5 +1,6 @@
 <div id="divLoading"></div>
 <div id="float-form">
+<button class="index_profile_button"><%= link_to 'My Profile', users_path + "/" + current_user.id.to_s %><div class="fa fa-lg fa-child"></div></button>
 
 <h1>Edit Board Tags</h1>
 <%= form_for @board, url: update_board_info_path(@board)  do |f| %>

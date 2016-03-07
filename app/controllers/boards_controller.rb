@@ -10,7 +10,11 @@ class BoardsController < ApplicationController
   #before_action :authorize, only:[:new]
 
   def index
-    @board = Board.all
+     if params[:search]
+       @board = Board.tagged_with(params[:search]).order("created_at DESC")
+     else
+       @boards = Board.order("created_at DESC")
+     end
   end
 
   def show

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :users
 
   delete 'boards/:id' => 'boards#destroy', as: :boards_destroy
+  get 'boards/index' => 'boards#index', as: :search_boards
   resources :boards
   get 'boards/:id/private' => 'boards#makePrivate', as: :make_board_private
   get 'boards/:id/updateBoard' => 'boards#editInfo', as: :edit_board_info
