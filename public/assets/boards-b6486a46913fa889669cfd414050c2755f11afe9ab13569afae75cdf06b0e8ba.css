@@ -1,0 +1,306 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,600,300);
+/* line 3, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+#canvas {
+  cursor: crosshair;
+}
+
+/* line 6, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+a:link {
+  text-decoration: none;
+}
+
+/* line 9, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+a {
+  color: darkblue;
+}
+
+/* line 12, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+* {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  font-family: 'Trocchi', serif;
+}
+
+/* line 21, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* line 27, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+#toolbar {
+  width: 100%;
+  height: 50px;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background-color: black;
+  color: white;
+}
+
+/* line 37, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+#footline {
+  bottom: 0;
+  left: 10;
+}
+
+/* line 42, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+#free {
+  float: left;
+  padding: 15px;
+}
+
+/* line 47, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+.radcontrol {
+  width: 30px;
+  height: 30px;
+  background-color: #3DBF83;
+  display: inline-block;
+  text-align: center;
+  padding: 5px;
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+/* line 59, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+.radcontrol:active {
+  background-color: #32473D;
+}
+
+/* line 63, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+.radcontrol:hover {
+  background-color: #00FF88;
+}
+
+/* line 68, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+#rad {
+  float: left;
+  height: 50px;
+  width: 200px;
+  padding: 12px;
+}
+
+/* line 75, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+#radval {
+  border: 1 solid white;
+  padding: 6px;
+}
+
+/* line 80, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+#colors {
+  float: right;
+  padding: 10px;
+  height: 50px;
+}
+
+/* line 86, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+.color {
+  width: 75px;
+  height: 30px;
+  border-radius: 15px;
+  box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.5), 0px 2px 2px rgba(0, 0, 0, 0.5);
+  display: inline-block;
+  padding: 10px;
+  margin-top: 10px;
+  float: right;
+  border: none;
+}
+
+/* line 98, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+.swatch {
+  width: 30px;
+  height: 30px;
+  border-radius: 15px;
+  box-shadow: inset 0px 1px 0px rgba(255, 255, 255, 0.5), 0px 2px 2px rgba(0, 0, 0, 0.5);
+  display: inline-block;
+  margin-left: 10px;
+  background-color: cyan;
+}
+
+/* line 110, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+#col {
+  padding: 15px;
+  height: 50px;
+  float: left;
+}
+
+/* line 117, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+#fileUpload {
+  width: 104px;
+  height: 30px;
+  font-size: 14px;
+  padding: 6px;
+  margin-top: 10px;
+  background-color: #d5d5d5;
+  float: left;
+  border-radius: 4px;
+  text-align: center;
+  margin-left: 5px;
+  font-weight: bolder;
+}
+
+/* line 131, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+.buttonOnBoard {
+  width: 56px;
+  height: 30px;
+  font-size: 14px;
+  padding: 6px;
+  margin-top: 10px;
+  background-color: #d5d5d5;
+  float: left;
+  border-radius: 4px;
+  text-align: center;
+  margin-left: 5px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+/* line 145, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+#save, #erase, #clear {
+  width: 56px;
+  height: 30px;
+  font-size: 14px;
+  padding: 6px;
+  margin-top: 10px;
+  background-color: #d5d5d5;
+  float: left;
+  border-radius: 4px;
+  text-align: center;
+  margin-left: 5px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+/* line 160, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+#eraser {
+  color: #9e370a;
+}
+
+/* line 163, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+#save {
+  color: #028313;
+}
+
+/* line 166, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+#clear {
+  color: #aa2222;
+}
+
+/* line 169, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+.buttonOnBoard:hover, #save:hover, #erase:hover, #clear:hover {
+  background-color: white;
+}
+
+/* line 175, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+v_wrap {
+  margin-top: 15px;
+}
+
+/* line 180, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+#divLoading {
+  display: block;
+  position: fixed;
+  background-image: url("loading.gif");
+  opacity: 0.4;
+  background-repeat: no-repeat;
+  background-position: center;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+}
+
+/* line 193, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+#image_to_canvas {
+  position: absolute;
+  left: -9999px;
+}
+
+/* line 198, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+#image_box {
+  text-align: center;
+  opacity: .60;
+  color: darkred;
+  position: absolute;
+  float: left;
+  display: none;
+  width: 100px;
+  height: 50px;
+  margin-top: -50px;
+  margin-left: -25px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  text-shadow: 2px 2px 2px #FFF;
+}
+
+/* line 214, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+#edit_img_tags {
+  background-color: white;
+  max-width: 600px;
+  margin: 4%;
+  border: 7px outset grey;
+}
+
+/* line 221, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+#index_img_view {
+  max-width: 260px;
+  margin: 0;
+  border: 7px outset grey;
+  background-color: white;
+}
+
+/* line 228, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+#index_search_button {
+  padding: 2px;
+  background-color: black;
+  color: white;
+  height: 36px;
+  width: 100px;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 6px;
+}
+
+/* line 239, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+.index_profile_button {
+  font-size: 26px;
+  font-weight: bold;
+  height: 40px;
+  width: 180px;
+  color: darkblue;
+  border-radius: 20px;
+  border: 4px outset darkgrey;
+}
+
+/* line 249, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+.index_button {
+  width: 260px;
+  height: 36px;
+}
+
+/* line 254, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+.index_button a {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+/* line 259, /home/gabe/workspace/rails/whiteboard_central/app/assets/stylesheets/boards.scss */
+#float-form {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  float: left;
+  margin: 0 auto;
+  padding: 52px;
+  top: 0%;
+  right: 0%;
+  z-index: 2;
+  border: 16px outset black;
+  background-color: lightgrey;
+  font-size: 20px;
+}
