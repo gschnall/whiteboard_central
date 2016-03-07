@@ -1,28 +1,23 @@
 <div id="divLoading"></div>
 <div id="float-form">
 
-<h1>Edit Board Info</h1>
-<%= form_tag update_board_info_path,{:class => 'form-horizontal'} do %>
+<h1>Edit Board Tags</h1>
+<%= form_for @board, url: update_board_info_path(@board)  do |f| %>
     <fieldset>
       <div class="form-group">
-          <%= label_tag :title, 'Title', class: 'col-md-4 control-label' %>
+          <%= f.label :tags, 'Tags Example: cool, bird, outside', class: 'col-md-4 control-label' %>
+          <hr>
         <div class="col-md-5">
-            <%= text_field_tag :title, params[:title], class: 'form-control' %>
-        </div>
-      </div>
-      <div class="form-group">
-          <%= label_tag :tags, 'Tags', class: 'col-md-4 control-label' %>
-        <div class="col-md-5">
-            <%= text_area_tag :tag_list, nil, class: 'form-control' %>
+            <%= f.text_area :tag_list, rows:"5", cols:"50", maxlength: '100', class: 'form-control', style: "font-size: 18px; color: darkblue" %>
         </div>
       </div>
       <div class="form-group">
           <div class="col-md-8 col-md-offset-4">
-              <%= submit_tag 'Update Info', class: 'btn btn-success' %>
+              <%= f.submit 'Update Tags', class: 'btn btn-success', style: "font-size: 17px; font-weight: bold; color: darkblue; width: 180px; height:40px; cursor: pointer; border: 3px outset black; background-color: white" %>
           </div>
       </div>
     </fieldset>
 <% end %>
-<%= image_tag @board.imagepath.to_s %>
+<%= image_tag @board.title.to_s, id: 'edit_img_tags' %>
 
 </div>

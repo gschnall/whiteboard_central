@@ -13,6 +13,6 @@ Rails.application.routes.draw do
   resources :boards
   get 'boards/:id/private' => 'boards#makePrivate', as: :make_board_private
   get 'boards/:id/updateBoard' => 'boards#editInfo', as: :edit_board_info
-  post 'boards/:id/updateBoard' => 'boards#updateInfo', as: :update_board_info
+  patch 'boards/:id/updateBoard' => 'boards#updateInfo', as: :update_board_info
 
 end

@@ -120,7 +120,7 @@ class BoardsController < ApplicationController
 
   private
     def board_params
-      params.require(:board).permit(:tag_list, :title)
+      params.require(:board).permit(:tag_list)
     end
 #Controller Ending
 end
