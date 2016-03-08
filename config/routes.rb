@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'users/index' => 'users#index', as: :search_users
   resources :users
 
+  get 'boards/show' => 'boards#show', as: :public_boards
   delete 'boards/:id' => 'boards#destroy', as: :boards_destroy
   get 'boards/index' => 'boards#index', as: :search_boards
   resources :boards
