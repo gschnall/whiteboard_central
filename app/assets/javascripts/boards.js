@@ -167,29 +167,29 @@ function readImage() {
                   $(document).keydown(function(e){
                     switch(e.which) {
                         case 187: // + or =
-                          imgProportions.width += 20; $('#image_box').css('width', imgProportions.width);
-                          imgProportions.height += 20; $('#image_box').css('height', imgProportions.height);
+                          imgProportions.width += 40; $('#image_box').css('width', imgProportions.width);
+                          imgProportions.height += 40; $('#image_box').css('height', imgProportions.height);
                           $('#image_box').css('background-image', 'url('+ img.src +' )')
                         break;
                         case 189: // - minus
-                          imgProportions.width -= 20; $('#image_box').css('width', imgProportions.width);
-                          imgProportions.height -= 20; $('#image_box').css('height', imgProportions.height);
+                          imgProportions.width -= 40; $('#image_box').css('width', imgProportions.width);
+                          imgProportions.height -= 40; $('#image_box').css('height', imgProportions.height);
                           $('#image_box').css('background-image', 'url('+ img.src +' )')
                         break;
                         case 37: // left
-                          imgProportions.width -= 20; $('#image_box').css('width', imgProportions.width);
+                          imgProportions.width -= 40; $('#image_box').css('width', imgProportions.width);
                           $('#image_box').css('background-image', 'url('+ img.src +' )')
                         break;
                         case 38: // up
-                          imgProportions.height += 20; $('#image_box').css('height', imgProportions.height);
+                          imgProportions.height += 40; $('#image_box').css('height', imgProportions.height);
                           $('#image_box').css('background-image', 'url('+ img.src +' )')
                         break;
                         case 39: // right
-                          imgProportions.width += 20; $('#image_box').css('width', imgProportions.width);
+                          imgProportions.width += 40; $('#image_box').css('width', imgProportions.width);
                           $('#image_box').css('background-image', 'url('+ img.src +' )')
                         break;
                         case 40: // down
-                          imgProportions.height -= 20; $('#image_box').css('height', imgProportions.height); // up
+                          imgProportions.height -= 40; $('#image_box').css('height', imgProportions.height); // up
                           $('#image_box').css('background-image', 'url('+ img.src +' )')
                         break;
                         default: return; // exit on other key presses
