@@ -5,6 +5,6 @@ class Board < ActiveRecord::Base
 
   def self.search(query)
     # where(:title, query) -> This would return an exact match of the query
-    where("tag_list like ?", "%#{query}%") 
+    where("LOWER(tag_list) like ?", "%#{query.downcase}%") 
   end
 end

@@ -8,6 +8,6 @@ class User < ActiveRecord::Base
   validates :password, presence: true
   def self.search(query)
     # where(:title, query) -> This would return an exact match of the query
-    where("name like ?", "%#{query}%") 
+    where("LOWER(name) like ?", "%#{query.downcase}%") 
   end
 end
