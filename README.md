@@ -27,3 +27,6 @@ The site allows users to draw on an HTML5 Canvas, save it and share it for other
 
 Make sure you have rails and ruby installed. fork the repo and install it locally. Edit the gem file so that the ruby version matches yours local ruby version. Then Bundle install and run your server with 'rails server'. 
 
+## Original Design
+
+<img src="./app/assets/images/pic.jpg">

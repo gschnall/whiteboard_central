@@ -9,7 +9,7 @@
 
 public/uploads/boards/*
 public/images/*.png
-app/assets/boards/*
+app/assets/boards/*.png
 
 # Ignore all logfiles and tempfiles.
 /log/*
