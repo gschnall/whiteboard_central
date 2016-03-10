@@ -34,16 +34,17 @@
     </div>
     <!-- /.container -->
 </nav>
-<%= form_for @user do |f| %>
+
+<%= form_for @user, :html => {:class => 'form-horizontal'} do |f| %>
   <hr>
-  <%= f.label :name, 'Name' %>
-  <%= f.text_field :name %> <br><br>
-  <%= f.label :email, 'Email' %>
-  <%= f.text_field :email %> <br><br>
-  <%= f.label :password, 'Password' %>
-  <%= f.password_field :password %> <br><br>
-  <%= f.label :about, 'About me' %>
-  <%= f.text_area :about %> <br><br>
+  <%= f.label :name, 'Name', :html => {:class => 'control-label'}, :style => 'font-size: 18px; margin-left: 16px' %> <i class="fa fa-lg fa-star bg bg-warning"></i>
+  <%= f.text_field :name, :class => 'form-control', :style => 'max-width: 300px; margin-left:16px' %> <br><br>
+  <%= f.label :email, 'Email', :html => {:class => 'control-label'}, :style => 'font-size: 18px; margin-left: 16px' %> <i class="fa fa-lg fa-star bg bg-warning"></i>
+  <%= f.text_field :email, :class => 'form-control', :style => 'max-width: 300px; margin-left:16px' %> <br><br>
+  <%= f.label :password, 'Password', :html => {:class => 'control-label'}, :style => 'font-size: 18px; margin-left: 16px' %> <i class="fa fa-lg fa-star bg bg-warning"></i>
+  <%= f.password_field :password, :class => 'form-control', :style => 'max-width: 300px; margin-left:16px' %> <br><br>
+  <%= f.label :about, 'About me', :html => {:class => 'control-label'}, :style => 'font-size: 18px; margin-left: 16px' %>
+  <%= f.text_area :about, :class => 'form-control', :style => 'max-width: 300px; margin-left:16px' %>
   <hr>
-  <%= f.submit %>
+  <%= f.submit :style => 'font-size: 18px; margin-left: 16px', :class => 'btn btn-success' %>
 <% end %>
